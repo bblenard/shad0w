@@ -20,6 +20,7 @@ typedef NTSTATUS (NTAPI * _NtProtectVirtualMemory) (
     PULONG  OldAccessProtection
 );
 
+#ifndef STAGER
 typedef NTSTATUS (NTAPI * _NtWriteVirtualMemory) (
     HANDLE ProcessHandle,
     PVOID  BaseAddress,
@@ -72,6 +73,7 @@ typedef NTSTATUS (NTAPI * _NtSetContextThread)(
 typedef NTSTATUS (NTAPI * _NtResumeThread)(
     HANDLE ThreadHandle
 );
+#endif
 
 
 struct NtInfo
@@ -87,6 +89,7 @@ struct Syscalls
 {
 	_NtAllocateVirtualMemory NtAllocateVirtualMemory;
     _NtProtectVirtualMemory  NtProtectVirtualMemory;
+    #ifndef STAGER
     _NtWriteVirtualMemory    NtWriteVirtualMemory;
     _NtQueueApcThread        NtQueueApcThread;
     _NtOpenProcess           NtOpenProcess;
@@ -95,6 +98,7 @@ struct Syscalls
     _NtGetContextThread      NtGetContextThread;
     _NtSetContextThread      NtSetContextThread;
     _NtResumeThread          NtResumeThread;
+    #endif
 };
 
 extern CHAR SyscallStub[SYSCALL_STUB_SIZE];
