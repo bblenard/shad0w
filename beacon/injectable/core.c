@@ -15,7 +15,7 @@
 
 // local
 
-#include "base64.h"
+#include "../lib/shared/base64.h"
 #include "strings.h"
 
 // core header file

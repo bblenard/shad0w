@@ -20,7 +20,7 @@ WIN_STDLIB_OUT=stdlib.lib
 
 WIN_STDLIB_FLAGS=-static
 
-WIN_VITAL_SOURCES=base64.c
+WIN_VITAL_SOURCES=$(WIN_SHARED_DIR)base64.c
 
 x64: win_beacon_64
 x64_debug: win_beacon_64

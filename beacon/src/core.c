@@ -15,7 +15,7 @@
 
 // local
 
-#include "base64.h"
+#include "../lib/shared/base64.h"
 #include "imports.h"
 #include "strings.h"
 #include "compression.h"
