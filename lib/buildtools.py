@@ -84,7 +84,7 @@ def _crypt_strings():
     new_file = ""
 
     try:
-        with open("strings.h", "r") as file:
+        with open("../lib/shared/strings.h", "r") as file:
             data = file.read()
 
         for define in data.splitlines():
