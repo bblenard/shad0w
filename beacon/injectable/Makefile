@@ -8,7 +8,9 @@ WIN_FLAGS=-Wl,-Bstatic -lwinhttp -Wl,-Bstatic -lwtsapi32 -Wl,-Bstatic -lsecur32 
 
 WIN_EXE_OUT=../beacon.exe
 
-WIN_C_SOURCES=debug.c core.c beacon.c syscalls.c loader.c
+WIN_SHARED_DIR=../lib/shared/
+
+WIN_C_SOURCES=debug.c core.c beacon.c loader.c $(WIN_SHARED_DIR)syscalls.c
 
 WIN_STDLIB_DIR=../lib/stdlib/
 WIN_STDLIB_SOURCES=$(WIN_STDLIB_DIR)listdirs.c $(WIN_STDLIB_DIR)readfile.c \
@@ -21,6 +23,8 @@ WIN_STDLIB_FLAGS=-static
 
 WIN_VITAL_SOURCES=base64.c
 
+BUILD_BASE=$(WIN_CC) $(WIN_STDLIB_SOURCES) $(WIN_VITAL_SOURCES) $(WIN_C_SOURCES) -o $(WIN_EXE_OUT) $(WIN_LINK) $(WIN_FLAGS)
+
 x64_debug: win_beacon_64_debug
 x64: win_beacon_64
 
@@ -28,7 +32,7 @@ win_stdlib_64:
 	$(WIN_CC) -c $(WIN_STDLIB_SOURCES) $(WIN_STDLIB_FLAGS) $(WIN_STDLIB_FLAGS)
 
 win_beacon_64_debug:
-	$(WIN_CC) $(WIN_STDLIB_SOURCES) $(WIN_VITAL_SOURCES) $(WIN_C_SOURCES) -o $(WIN_EXE_OUT) $(WIN_LINK) $(WIN_FLAGS)
+	$(BUILD_BASE)
 
 win_beacon_64:
-	$(WIN_CC) $(WIN_STDLIB_SOURCES) $(WIN_VITAL_SOURCES) $(WIN_C_SOURCES) -o $(WIN_EXE_OUT) $(WIN_LINK) $(WIN_FLAGS) $(WIN_HIDE_FLAGS)
+	$(BUILD_BASE) $(WIN_HIDE_FLAGS)

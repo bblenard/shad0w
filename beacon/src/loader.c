@@ -18,7 +18,7 @@
 
 #include "loader.h"
 #include "settings.h"
-#include "syscalls.h"
+#include "../lib/shared/syscalls.h"
 #include "ReflectiveLoader.h"
 
 #define MAX_OUTPUT 1000

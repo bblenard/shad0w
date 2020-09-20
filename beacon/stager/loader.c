@@ -4,7 +4,7 @@
 
 #include "loader.h"
 #include "strings.h"
-#include "syscalls.h"
+#include "../lib/shared/syscalls.h"
 #include "imports.h"
 
 VOID ExecuteStage(CHAR* Stage, DWORD sSize)

@@ -7,7 +7,9 @@ WIN_FLAGS=-Wl,-Bstatic -lwinhttp -Wl,-Bstatic -lwtsapi32 -Wl,-Bstatic -lsecur32 
 
 WIN_EXE_OUT=../beacon.dll
 
-WIN_C_SOURCES=debug.c core.c beacon.c syscalls.c loader.c ReflectiveDll.c ReflectiveLoader.c
+WIN_SHARED_DIR=../lib/shared/
+
+WIN_C_SOURCES=debug.c core.c beacon.c loader.c ReflectiveDll.c ReflectiveLoader.c $(WIN_SHARED_DIR)syscalls.c
 
 WIN_STDLIB_DIR=../lib/stdlib/
 WIN_STDLIB_SOURCES=$(WIN_STDLIB_DIR)listdirs.c $(WIN_STDLIB_DIR)readfile.c \
