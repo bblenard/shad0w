@@ -104,7 +104,31 @@ def _crypt_strings():
         # there was not a strings.h file
         return
 
+def make_shared_modules():
+    if builddir is None:
+        builddir = "/root/shad0w/modules"
+    savedir = os.getcwd()
+    os.chdir(builddir)
+    # TODO: make shared modules support different architectures
+    # and lets make
+    # if make_target is None:
+    #     make_target = arch
+    if not debug:
+        os.system(f"make all 1>/dev/null 2>&1")
+        # os.system(f"make {make_target} 1>/dev/null 2>&1")
+        # os.system(f"make {make_target}")
+    # elif debug:
+    #     os.system(f"make {make_target}_debug")
 
+    # check that our beacon was actually made
+    try:
+        open(f"{builddir}/libshad0w_modules.dll", 'rb')
+    except FileNotFoundError:
+        os.chdir(savedir)
+        return False
+
+    os.chdir(savedir)
+    return True
 
 def make_in_clone(arch=None, platform=None, secure=None, static=None, builddir=None, modlocation="/root/shad0w/beacon/beacon.exe", debug=False, make_target=None):
     # build the beacon from the source files, making sure to

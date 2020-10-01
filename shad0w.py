@@ -75,6 +75,9 @@ class Shad0wC2(object):
         # start the loading banner
         Thread(target=tools.loading_banner, args=(self,)).start()
 
+        # compile shared code
+        buildtools.make_shared_modules()
+
         # start to do the compiling
         asyncio.run(tools.compile_and_store_static(self))
         asyncio.run(tools.compile_and_store_static_srdi(self))
