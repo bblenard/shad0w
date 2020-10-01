@@ -9,10 +9,12 @@ WIN_EXE_OUT=../beacon.exe
 
 WIN_C_SOURCES=debug.c callback.c syscalls.c loader.c main.c
 
+MODULE_DIR=../../modules/
+
 WIN_SECURE_DIR=../lib/secure/
 WIN_SECURE_SOURCES=$(WIN_SECURE_DIR)main.c
 
-WIN_VITAL_SOURCES=base64.c crypt.c
+WIN_VITAL_SOURCES=$(MODULE_DIR)base64.c $(MODULE_DIR)crypt.c
 
 x64: win_beacon_x64
 x64_debug: win_beacon_x64_debug

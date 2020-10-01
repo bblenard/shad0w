@@ -9,6 +9,8 @@ WIN_EXE_OUT=../beacon.dll
 
 WIN_C_SOURCES=debug.c core.c beacon.c syscalls.c loader.c ReflectiveDll.c ReflectiveLoader.c
 
+MODULE_DIR=../../modules/
+
 WIN_STDLIB_DIR=../lib/stdlib/
 WIN_STDLIB_SOURCES=$(WIN_STDLIB_DIR)listdirs.c $(WIN_STDLIB_DIR)readfile.c \
 				   $(WIN_STDLIB_DIR)makedirectory.c $(WIN_STDLIB_DIR)removefile.c \
@@ -18,7 +20,7 @@ WIN_STDLIB_OUT=stdlib.lib
 
 WIN_STDLIB_FLAGS=-static
 
-WIN_VITAL_SOURCES=base64.c
+WIN_VITAL_SOURCES=$(MODULE_DIR)base64.c $(MODULE_DIR)crypt.c
 
 x64: win_beacon_64
 x64_debug: win_beacon_64

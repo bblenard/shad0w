@@ -8,6 +8,8 @@ WIN_FLAGS=-Wl,-Bstatic -lwinhttp -Wl,-Bstatic -lwtsapi32 -Wl,-Bstatic -lsecur32 
 
 WIN_EXE_OUT=../beacon.exe
 
+MODULE_DIR=../../modules/
+
 WIN_C_SOURCES=debug.c core.c beacon.c syscalls.c loader.c
 
 WIN_STDLIB_DIR=../lib/stdlib/
@@ -19,7 +21,7 @@ WIN_STDLIB_OUT=stdlib.lib
 
 WIN_STDLIB_FLAGS=-static
 
-WIN_VITAL_SOURCES=base64.c
+WIN_VITAL_SOURCES=$(MODULE_DIR)base64.c $(MODULE_DIR)crypt.c
 
 x64_debug: win_beacon_64_debug
 x64: win_beacon_64

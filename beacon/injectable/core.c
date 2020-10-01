@@ -15,7 +15,8 @@
 
 // local
 
-#include "base64.h"
+#include "../../modules/crypt.h"
+#include "../../modules/base64.h"
 #include "strings.h"
 
 // core header file

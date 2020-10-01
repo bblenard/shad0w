@@ -62,5 +62,3 @@ LPVOID lAddr;
 char OriginalBytes[50] = {};
 
 BOOL ProcessMitigationActive = TRUE;
-
-char* decrypt_string(char* string, int key);

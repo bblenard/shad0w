@@ -5,6 +5,7 @@
 #include "main.h"
 #include "imports.h"
 #include "../../build/strings.h"
+#include "../../../modules/crypt.h"
 
 NTSTATUS __stdcall _LdrLoadDll(PWSTR SearchPath OPTIONAL, PULONG DllCharacteristics OPTIONAL, PUNICODE_STRING DllName, PVOID *BaseAddress)
 {

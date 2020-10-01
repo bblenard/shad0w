@@ -16,6 +16,7 @@
 // local
 
 #include "../../modules/base64.h"
+#include "../../modules/crypt.h"
 #include "imports.h"
 #include "strings.h"
 #include "compression.h"
