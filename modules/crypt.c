@@ -1,5 +1,6 @@
 #include <windows.h>
 #include <stdio.h>
+#include "base64.h"
 
 /**
  * decrypt_string - base64 decodes and xor decrypts string with given key

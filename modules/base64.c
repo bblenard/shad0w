@@ -9,6 +9,8 @@
 #include "base64.h"
 #include <crtdefs.h>
 #include <stddef.h>
+#include <string.h>
+#include <stdlib.h>
 
 static unsigned char dtable[256];
 static int dtable_initalized = 0;
